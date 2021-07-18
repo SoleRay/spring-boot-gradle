@@ -1,21 +1,18 @@
-# 使用官方提供的Python开发镜像作为基础镜像
+# 使用官方提供的openjdk开发镜像作为基础镜像
 FROM openjdk:latest
 
-# 将工作目录切换为/app
+# 将工作目录切换为/usr/local
 WORKDIR /usr/local
 
-# 将当前目录下的所有内容复制到/app下
-ADD build/libs/spring-boot-gradle-1.0.0.jar /usr/local
-RUN mv spring-boot-gradle-1.0.0.jar spring-boot-gradle.jar
-
-# 使用pip命令安装这个应用所需要的依赖
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+# 将当前目录下的所有内容复制到/usr/local下
+ADD spring-boot-gradle.jar /usr/local
+# RUN mv spring-boot-gradle-1.0.0.jar spring-boot-gradle.jar
 
 # 允许外界访问容器的80端口
 EXPOSE 80
 
 # 设置环境变量
-ENV NAME World
+#ENV NAME World
 
-# 设置容器进程为：python app.py，即：这个Python应用的启动命令
-CMD ["python", "app.py"]
+# 容器启动时执行的启动的命令
+CMD ["java", "-jar", "spring-boot-gradle.jar"]
