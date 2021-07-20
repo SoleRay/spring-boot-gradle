@@ -1,0 +1,6 @@
+1.图形验证码
+2.踢用户
+3.spring security的坑
+4.spring session的问题（跨域问题）
+5.spring security一般不和jwt集成。因为jwt做的是无状态会话
+6.HTTS两大功能：数据防篡改，ca认证，防止域名劫持。
